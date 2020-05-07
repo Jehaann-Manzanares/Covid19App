@@ -1,15 +1,18 @@
 import React from 'react';
 import { Text,TouchableOpacity,View, StyleSheet,Image } from 'react-native';
+import { SvgUri } from 'react-native-svg';
 
 function CountriesItem ( props ) {
     return(
         <TouchableOpacity>
             <View style = {styles.container}>
                 <View style = {styles.country}>
-                    <Image 
-                    source = { { uri : props.flag} }
+                    <SvgUri 
+                    width="100%"
+                    height="100%"
+                    uri = {props.flag}
                     style = {styles.flag}
-                    ></Image>
+                    ></SvgUri>
                     <Text style = { styles.pais}>{props.name}</Text>
                 </View>
             </View>

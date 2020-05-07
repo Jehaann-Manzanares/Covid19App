@@ -48,10 +48,21 @@ class AppLayout extends Component {
     render(){
         return(
             <View>
+                <StatusBar backgroundColor="#ef564f" barStyle="light-content"/>
                 <Countries
                 countriesAndFlags = {this.state.CountriesAndFlagsItem}
                 />
-                
+                <Home>
+                    <StatusBar backgroundColor="#ef564f" barStyle="light-content"/>
+                    <Header/>
+                    <Hero
+                     summary = {this.state.summaryItem}
+                     global = {this.state.GlobalItem}
+                    />
+                    <DataItems 
+                    countries = {this.state.CountriesItem}
+                    />   
+                </Home>
             </View>
                 
 
