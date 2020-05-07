@@ -35,44 +35,49 @@ const styles = StyleSheet.create({
         marginTop:20,
         paddingHorizontal:5,
         flexDirection:'row',
-        justifyContent:'space-between',
+        justifyContent:'space-around',
         alignItems:"center",
    
     },
     item:{
         backgroundColor:'white',
-        padding:10,
+        padding:5,
         borderRadius: 5,
         height:170,
-        
-        
-        
+        width:'48%',
         
     },
     title:{
         color:'#909090',
         fontSize:12,
         textTransform:'uppercase',
-        marginTop:10
+        marginTop:10,
+        marginLeft:15
+        
+        
         
     },
     total:{
         color:'#ef5550',
-        fontSize:35,
+        fontSize:30,
         fontWeight:'bold',
-        marginBottom:5
+        marginBottom:5,
+        marginLeft:15
+        
+
     },
     totalGreen:{
         color:'#5db882',
-        fontSize:35,
+        fontSize:30,
         fontWeight:'bold',
-        marginBottom:5
+        marginBottom:5,
+        marginLeft:15
     },
     img:{
-        width:'auto',
-        height: 60,
+        width:'100%',
+        height: '70%',
         //resizeMode:'center'
-        //overflow:'visible'
+        overflow:'hidden'
 
     }
 })

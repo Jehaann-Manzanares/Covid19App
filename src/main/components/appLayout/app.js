@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 
 import {
  StatusBar,
- ScrollView
+ ScrollView,
+ View
 } from 'react-native';
 
 import Home from '../../screen/container/home';
 import Header from '../../components/header';
 import DataItems from '../DataItems/data-items';
 import Hero from '../Hero';
+import Countries from '../../screen/container/Countries'
 
 import API from '../../../utils/api'
 
@@ -16,7 +18,8 @@ class AppLayout extends Component {
     state = {
         summaryItem:[],
         GlobalItem:[],
-        CountriesItem:[]
+        CountriesItem:[],
+        CountriesAndFlagsItem:[]
     }
        
     async componentDidMount(){
@@ -34,23 +37,23 @@ class AppLayout extends Component {
         this.setState({
             CountriesItem:Countries
         })
+
+        const CountriesAndFlags = await API.getCountriesNameandFlag();
+        this.setState({
+            CountriesAndFlagsItem:CountriesAndFlags
+        })
+
     }
 
     render(){
         return(
-
-                <Home>
-                    <StatusBar backgroundColor="#ef564f" barStyle="light-content"/>
-                    <Header/>
-                    <Hero
-                     summary = {this.state.summaryItem}
-                     global = {this.state.GlobalItem}
-                    />
-                    <DataItems 
-                    countries = {this.state.CountriesItem}
-                    />    
-                    
-                </Home>
+            <View>
+                <Countries
+                countriesAndFlags = {this.state.CountriesAndFlagsItem}
+                />
+                
+            </View>
+                
 
         )
     }
