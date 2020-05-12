@@ -1,18 +1,23 @@
 import React from 'react';
-import { Text,TouchableOpacity,View, StyleSheet,Image } from 'react-native';
-import { SvgUri } from 'react-native-svg';
+import { Text,TouchableOpacity,View, StyleSheet,Image, _View } from 'react-native';
+import { SvgCssUri } from 'react-native-svg';
 
 function CountriesItem ( props ) {
     return(
-        <TouchableOpacity>
+        <TouchableOpacity
+        onPress = {props.onPress}
+        >
             <View style = {styles.container}>
                 <View style = {styles.country}>
-                    <SvgUri 
-                    width="100%"
-                    height="100%"
-                    uri = {props.flag}
-                    style = {styles.flag}
-                    ></SvgUri>
+                    
+                    <View style = {styles.flag}>
+                        <SvgCssUri 
+                        width="100%"
+                        height="100%"
+                        uri = {props.flag}
+                        
+                        />
+                    </View>
                     <Text style = { styles.pais}>{props.name}</Text>
                 </View>
             </View>
@@ -29,14 +34,15 @@ const styles = StyleSheet.create({
     country:{
         flexDirection:'row',
         padding:20,
-        
-        
-       
+        alignItems:'center',
+         
     },
     flag:{
-        width:20,
-        height:20,
-        marginRight:15
+        width:31,
+        height:31,
+        marginRight:15,
+        
+        
     },
     pais:{
         fontSize:15,

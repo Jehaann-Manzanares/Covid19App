@@ -6,11 +6,13 @@ import {
  View
 } from 'react-native';
 
+
 import Home from '../../screen/container/home';
-import Header from '../../components/header';
-import DataItems from '../DataItems/data-items';
 import Hero from '../Hero';
-import Countries from '../../screen/container/Countries'
+import ListCountries from '../../screen/container/Countries'
+
+import { connect } from 'react-redux';
+import store from '../../../stores/store'
 
 import API from '../../../utils/api'
 
@@ -23,51 +25,59 @@ class AppLayout extends Component {
     }
        
     async componentDidMount(){
-        const summary = await API.getSummary()
+        /*const summary = await API.getSummary()
         this.setState({
             summaryItem:summary
         })
-
+        store.dispatch({
+            type:'SET_SUMMARY',
+            payload:{
+                summary
+            }
+        })
         const Global = await API.getGlobal()
-        this.setState({
+        /*this.setState({
             GlobalItem:Global
         })
-
-        const Countries = await API.getCountries()
-        this.setState({
-            CountriesItem:Countries
-        })
-
+        store.dispatch({
+            type:'SET_GLOBAL',
+            payload:{
+                Global
+            }
+        })*/
         const CountriesAndFlags = await API.getCountriesNameandFlag();
-        this.setState({
+        /*this.setState({
             CountriesAndFlagsItem:CountriesAndFlags
+        })*/
+        store.dispatch({
+            type:'SET_COUNTRIES_FLAG',
+            payload:{
+                CountriesAndFlags
+            }
         })
-
     }
 
     render(){
-        return(
-            <View>
-                <StatusBar backgroundColor="#ef564f" barStyle="light-content"/>
-                <Countries
-                countriesAndFlags = {this.state.CountriesAndFlagsItem}
-                />
-                <Home>
-                    <StatusBar backgroundColor="#ef564f" barStyle="light-content"/>
-                    <Header/>
-                    <Hero
-                     summary = {this.state.summaryItem}
-                     global = {this.state.GlobalItem}
-                    />
-                    <DataItems 
-                    countries = {this.state.CountriesItem}
-                    />   
-                </Home>
-            </View>
-                
+  
+            if ( this.props.selectedCountry) {
+                return (
+                    <Home>
+                        <Hero/>
+                     </Home>
+                )
 
-        )
+            }
+
+            return(
+                <ListCountries/>
+
+            )
+    }
+}
+function mapStateToProps ( state ) {
+    return{
+        selectedCountry: state.selectedCountry,
     }
 }
 
-export default AppLayout;
+export default connect(mapStateToProps)(AppLayout);

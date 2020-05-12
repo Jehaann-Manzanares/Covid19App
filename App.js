@@ -2,10 +2,11 @@
 import React, { Component } from 'react';
 import {
   SafeAreaView,
-  StyleSheet,
-
-
 } from 'react-native';
+
+import { Provider } from 'react-redux';
+import store from './src/stores/store'
+
 
 import AppLayout from './src/main/components/appLayout/app'
 
@@ -13,21 +14,16 @@ import AppLayout from './src/main/components/appLayout/app'
 class App extends Component {
   render(){
       return (  
+        <Provider
+          store = {store}
+        >
           <SafeAreaView>
             <AppLayout/>
           </SafeAreaView>
+        </Provider>
       );
   }
 };
 
-const styles = StyleSheet.create({
-
-  scrollView: {
-    backgroundColor: 'white',
-  },
-  body: {
-    backgroundColor: 'white',
-  },
-});
 
 export default App;

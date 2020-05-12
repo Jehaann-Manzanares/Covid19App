@@ -29,7 +29,7 @@ class Searcher extends Component {
         return(
             <View style = { styles.container}>
                 <Image
-                    source={ require('../../../assets/search.png')}
+                    //source={ require('../../../assets/search.png')}
                     style = { styles.icon}
 
                 ></Image>
@@ -53,7 +53,7 @@ class Searcher extends Component {
         flexDirection:'row',
         margin: 20,
         alignItems:'center',
-        borderRadius:5,
+        borderRadius:7,
         backgroundColor:'white',
         padding:10
         
@@ -65,7 +65,7 @@ class Searcher extends Component {
      },
      input:{
         fontSize:17,
-        color:'black',
+        color:'#707070',
         fontWeight:'700',
         padding:10
         

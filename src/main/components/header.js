@@ -14,7 +14,7 @@ function Header ( props ) {
             <View style = { styles.container}>
                 <View style = { styles.Header}>
                     <Image
-                        source = { require('../../../assets/menu.png')}
+                        source = { require('../../../assets/menu_grey.png')}
                         style = { styles.icon}
                     />
                 </View>
@@ -25,8 +25,9 @@ function Header ( props ) {
 
 const styles = StyleSheet.create({
     container:{
-        padding: 20,
-        backgroundColor: "#ef564f",
+        paddingHorizontal: 20,
+        paddingVertical: 5,
+        backgroundColor: "transparent",
     },
     Header:{
         paddingVertical: 10,
