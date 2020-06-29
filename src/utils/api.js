@@ -1,5 +1,7 @@
 const API = 'https://api.covid19api.com/summary'
 const API_Countries_Flags = 'https://restcountries.eu/rest/v2/all';
+const API_Country_All_STATUS = 'https://api.covid19api.com/live/country/';
+
 
 class Api {
     async getSummary() {
@@ -26,6 +28,12 @@ class Api {
         const ListCountries = await query.json();
         console.log(ListCountries)
         return ListCountries;
+    }
+    async getCountryAllStatus(NameCountry){
+        const query = await fetch(`${API_Country_All_STATUS}${NameCountry}`);
+        const Country = await query.json();
+        //console.log(Country[0])
+        return Country[0];
     }
 
 }

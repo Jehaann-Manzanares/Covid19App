@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
 
-import {
- StatusBar,
- ScrollView,
- View
-} from 'react-native';
-
-
 import Home from '../../screen/container/home';
 import Hero from '../Hero';
 import ListCountries from '../../screen/container/Countries'
@@ -55,7 +48,21 @@ class AppLayout extends Component {
                 CountriesAndFlags
             }
         })
+        const { name } = this.props.selectedCountry;
+        const countryData = await API.getCountryAllStatus('nicaragua');
+        store.dispatch({
+            type:'SET_COUNTRY',
+            payload:{
+                countryData
+                
+                
+            }
+        })
+        console.log(name)
+        
     }
+
+    
 
     render(){
   
@@ -70,7 +77,6 @@ class AppLayout extends Component {
 
             return(
                 <ListCountries/>
-
             )
     }
 }

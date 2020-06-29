@@ -7,7 +7,7 @@ import CountriesItem from '../../components/Countries/components/CountriesItem'
 import Separator from '../../components/Separator'
 
 import {
-    Text,
+    Image,
     FlatList
 } from 'react-native'
 
@@ -45,7 +45,12 @@ class Countries extends Component {
 
         return(
             <CountriesLayout>
-                <Header></Header>
+                <Header>
+                    <Image
+                        source = { require(`../../../../assets/menu_grey.png`)}
+                        //style = { styles.icon}
+                    />
+                </Header>
                 <Searcher/>
                 <FlatList
                     keyExtractor={this.keyExtractor}

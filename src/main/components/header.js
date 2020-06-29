@@ -13,10 +13,7 @@ function Header ( props ) {
         <SafeAreaView>
             <View style = { styles.container}>
                 <View style = { styles.Header}>
-                    <Image
-                        source = { require('../../../assets/menu_grey.png')}
-                        style = { styles.icon}
-                    />
+                        {props.children}
                 </View>
             </View>
         </SafeAreaView>
@@ -30,7 +27,9 @@ const styles = StyleSheet.create({
         backgroundColor: "transparent",
     },
     Header:{
+        flexDirection:'row',
         paddingVertical: 10,
+        justifyContent:'space-between'
     },
     icon:{
         width: 30,
