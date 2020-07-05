@@ -1,5 +1,5 @@
 ## Covid19App
-#Aplicación móvil para monitorear casos de COVID 19 por paises. 
+Aplicación móvil para monitorear casos de COVID 19 por paises. 
 
 
-![covid19app](https://assets.materialup.com/uploads/e700740a-f6a1-442f-8239-7aad640d23e8/attachment.jpg)
+![covid19app](https://github.com/Jehaann-Manzanares/Covid19App/blob/dev/assets/screenshot.jpg?raw=true)
