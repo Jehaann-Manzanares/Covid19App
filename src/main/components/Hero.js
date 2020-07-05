@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+
+import { useDispatch } from 'react-redux'
 
 
 import {
@@ -15,50 +16,29 @@ import {
 } from 'react-native';
 
 import Header from '../components/header';
-
-import API from '../../utils/api';
-import store from '../../stores/store'
 import CountryDetail from './Countries/CountryDetail';
 
 
 
 
-class Hero extends Component {
+function Hero () {
 
-    state = {
-        countryDataItem:[]
-    }
-    /*async componentDidMount(){
-        const CountryName = this.props.country.name;
-        const countryData = await API.getCountryAllStatus(CountryName);
-        
-        this.setState({
-            countryDataItem: countryData
-        })
-        store.dispatch({
-            type:'SET_COUNTRY',
-            payload:{
-                countryData
-                
-            }
-        })
-    }
-*/
-    closeCountry = () => {
-        this.props.dispatch({
+    const dispatch = useDispatch()
+    const closeCountry = () => {
+        dispatch({
             type:'SET_SELECTED_COUNTRY',
             payload:{
                 country:null
             }
         })
     }
-    render(){
+
         return(
-            <View backg                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 roundColor="#FA5252">
+            <View backgroundColor="#FA5252">
             <StatusBar backgroundColor="#FA5252" barStyle="light-content"/>
             <Header>
             <TouchableOpacity
-                onPress = { this.closeCountry}
+                onPress = { closeCountry}
             
             >
                 <Image
@@ -68,11 +48,11 @@ class Hero extends Component {
 
             </TouchableOpacity>
             </Header>
-            <CountryDetail data = {this.props.countryData}/>
+            <CountryDetail/>
             </View>
-        )                                                                                                                                                                                                                                                                                                                                                                                                                                    
+        )
 
-    }
+    
 }
 
 const styles = StyleSheet.create({
@@ -85,13 +65,6 @@ const styles = StyleSheet.create({
 
 })
 
-function mapStateToProps ( state ) {
-    return{
-        country: state.selectedCountry,
-        countryData: state.countryData,
-        
-        
-    }
-}
 
-export default connect(mapStateToProps)(Hero);
+
+export default Hero;

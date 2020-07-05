@@ -5,7 +5,8 @@ function Flags ( state = {}, action ){
     switch (action.type) {
         
         case 'SET_COUNTRIES_FLAG':
-                return {...state, ...action.payload}
+                console.log('voy a actualizar la lista de paises')
+                return {...state, countryList:action.payload}
             break;
         case 'SET_COUNTRY':
                 return {...state, ...action.payload}
