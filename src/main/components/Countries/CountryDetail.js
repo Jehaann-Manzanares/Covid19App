@@ -1,4 +1,5 @@
-import React from 'react';
+import React,  { useState,useEffect } from 'react';
+import { useSelector } from 'react-redux'
 
 import {
     View,
@@ -12,69 +13,80 @@ import {
 } from 'react-native';
 
 
+function CountryDetail (){
+        let countrySelected = useSelector( state => state.selectedCountry.alpha2Code)
+        const [country, setCountry] = useState(countrySelected)
+        console.log("country selected",countrySelected)
 
-
-function CountryDetail ( props ) {
-    return(
-        <View backgroundColor="#FA5252">
-            <StatusBar backgroundColor="#FA5252" barStyle="light-content"/>
-            <View style = {styles.container}>
-    <Text style = { styles.date}>{}</Text>
-                <Text style = { styles.title}>Tota Cases in {} </Text>
-                <Text style = { styles.total}>{ }</Text>
-                <View style= {styles.container2}>
-                <View style= {styles.item}>
-                    <Text style= {styles.title2}>Death</Text>
-                    <Text style= {styles.total2}>{}</Text>
-                    <ImageBackground
-                    source = { require('../../../../assets/graphic_red.png')}
-                    style= {styles.img} />
-                </View>
-                <View style= {styles.item}>
-                    <Text style= {styles.title2}>Recovered</Text>
-                    <Text style= {styles.totalGreen}>{}</Text>
-                    <ImageBackground
-                    source = { require('../../../../assets/graphic_green.png')}
-                    style= {styles.img} />
-                </View>
-                </View>  
-                <View style= {styles.container3}>
-                <View style= {styles.item3}>
-                    <View style = {styles.colum1}>
-                        <Text style= {styles.title3}>Active cases</Text>
-                        <Text style= {styles.total3}>{}</Text>
+        useEffect ( () => {
+            fetch(`https://api.covid19api.com/live/country/${countrySelected.toLowerCase()}`)
+            .then( ( response ) => response.json() )
+            .then( ( data ) => {
+                setCountry(data[18])
+            })
+        })
+        console.log("country",country)
+        return(
+            <View backgroundColor="#FA5252">
+                <StatusBar backgroundColor="#FA5252" barStyle="light-content"/>
+                <View style = {styles.container}>
+                    <Text style = { styles.date}>{country.Date}</Text>
+                    <Text style = { styles.title}>Total Cases in {country.Country} </Text>
+                    <Text style = { styles.total}>{country.Confirmed}</Text>
+                    <View style= {styles.container2}>
+                    <View style= {styles.item}>
+                        <Text style= {styles.title2}>Death</Text>
+                        <Text style= {styles.total2}>{country.Deaths}</Text>
+                        <ImageBackground
+                        source = { require('../../../../assets/graphic_red.png')}
+                        style= {styles.img} />
                     </View>
-                    <View style = {styles.colum2}>
-                        <View style = {styles.colum2_procents}>
-                            <Image
-                            source = { require('../../../../assets/arrow_green.png')}
-                            style= {styles.img3}
-                            />
-                            <View style={styles.container_text3}>
-                                <Text style={styles.num3}>5</Text>
-                                <Text style={styles.text3}>Recovered</Text>
-                            </View>
+                    <View style= {styles.item}>
+                        <Text style= {styles.title2}>Recovered</Text>
+        <Text style= {styles.totalGreen}>{country.Confirmed}</Text>
+                        <ImageBackground
+                        source = { require('../../../../assets/graphic_green.png')}
+                        style= {styles.img} />
+                    </View>
+                    </View>  
+                    <View style= {styles.container3}>
+                    <View style= {styles.item3}>
+                        <View style = {styles.colum1}>
+                            <Text style= {styles.title3}>Active cases</Text>
+                            <Text style= {styles.total3}>{country.Active}</Text>
                         </View>
-                        <View style = {styles.colum2_procents}>
-                            <Image
-                            source = { require('../../../../assets/arrow_red.png')}
-                            style= {styles.img3}
-                            />
-                            <View  style={styles.container_text3}>
-                                <Text style={styles.num3}>10</Text>
-                                <Text style={styles.text3}>Deaths</Text>
+                        <View style = {styles.colum2}>
+                            <View style = {styles.colum2_procents}>
+                                <Image
+                                source = { require('../../../../assets/arrow_green.png')}
+                                style= {styles.img3}
+                                />
+                                <View style={styles.container_text3}>
+                                    <Text style={styles.num3}>{country.Recovered}</Text>
+                                    <Text style={styles.text3}>Recovered</Text>
+                                </View>
                             </View>
+                            <View style = {styles.colum2_procents}>
+                                <Image
+                                source = { require('../../../../assets/arrow_red.png')}
+                                style= {styles.img3}
+                                />
+                                <View  style={styles.container_text3}>
+                                    <Text style={styles.num3}>{country.Deaths}</Text>
+                                    <Text style={styles.text3}>Deaths</Text>
+                                </View>
+                            </View>
+                           
                         </View>
-                       
                     </View>
                 </View>
-            </View>
-            </View>
-            </View>
-         
-    )
+                </View>
+                </View>
+             
+        )
 
-}
+    } 
+
 
 const styles = StyleSheet.create({
     radar:{
